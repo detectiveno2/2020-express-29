@@ -1,0 +1,14 @@
+.table .thead-dark td {
+  padding: 0px;
+  line-height: 64px;
+}
+
+.table .thead-dark tr td:last-child {
+  padding-top: 18px;
+}
+
+.error-five {
+  height: 91.5vh;
+  background-image: url(https://cdn.glitch.com/25a7302b-8fb7-49e3-9cde-d1497a081d52%2FHTML-CSS-500-Internal-Error-Page.png?v=1588083862236);
+  background-position: 55% 60%;
+}
