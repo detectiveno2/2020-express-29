@@ -1,8 +1,8 @@
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require('cloudinary').v2;
 
-const Book = require("../models/book.model");
-const Session = require("../models/session.model");
-const User = require("../models/user.model");
+const Book = require('../models/book.model');
+const Session = require('../models/session.model');
+const User = require('../models/user.model');
 
 module.exports.index = async (req, res, next) => {
   let perPage = 4;
@@ -11,21 +11,31 @@ module.exports.index = async (req, res, next) => {
   let end = page * perPage;
 
   let books = await Book.find();
+  let users = await User.find();
 
-  res.render("books/index", {
+  res.render('books/index', {
+    users: users,
     books: books,
-    pageQuantity: Math.floor(Book.find().length / perPage + 1)
+    pageQuantity: Math.floor(Book.find().length / perPage + 1),
+  });
+};
+
+module.exports.shopIndex = async (req, res) => {
+  let users = await User.find();
+
+  res.render('books/index', {
+    users: users,
   });
 };
 
 module.exports.create = (req, res) => {
-  res.render("books/create");
+  res.render('books/create');
 };
 
 module.exports.postCreate = async (req, res) => {
   if (!req.file) {
     let result = await cloudinary.uploader.upload(
-      "https://cdn.glitch.com/46ef95f0-e192-4c0d-b1de-dc836e53b5d3%2Ffavicon.png?v=1587549411189"
+      'https://cdn.glitch.com/46ef95f0-e192-4c0d-b1de-dc836e53b5d3%2Ffavicon.png?v=1587549411189'
     );
     req.body.coverUrl = result.url;
   } else {
@@ -35,19 +45,19 @@ module.exports.postCreate = async (req, res) => {
 
   await Book.insertMany([req.body]);
   Book.save;
-  res.redirect("/books");
+  res.redirect('/books');
 };
 
 module.exports.edit = (req, res) => {
-  res.render("books/edit", {
-    id: req.params.id
+  res.render('books/edit', {
+    id: req.params.id,
   });
 };
 
 module.exports.postEdit = async (req, res) => {
   if (!req.file) {
     var result = await cloudinary.uploader.upload(
-      "https://cdn.glitch.com/46ef95f0-e192-4c0d-b1de-dc836e53b5d3%2Ffavicon.png?v=1587549411189"
+      'https://cdn.glitch.com/46ef95f0-e192-4c0d-b1de-dc836e53b5d3%2Ffavicon.png?v=1587549411189'
     );
   } else {
     var result = await cloudinary.uploader.upload(req.file.path);
@@ -55,18 +65,18 @@ module.exports.postEdit = async (req, res) => {
 
   await Book.findByIdAndUpdate(req.body.id, {
     title: req.body.title,
-    coverUrl: result.url
+    coverUrl: result.url,
   });
   Book.save;
 
-  res.redirect("/books");
+  res.redirect('/books');
 };
 
 module.exports.delete = async (req, res) => {
   await Book.findByIdAndDelete(req.params.id);
   Book.save;
 
-  res.redirect("/books");
+  res.redirect('/books');
 };
 
 module.exports.add = async (req, res) => {
@@ -78,5 +88,5 @@ module.exports.add = async (req, res) => {
   console.log(session.cart);
 
   await session.save();
-  res.redirect("/books");
+  res.redirect('/books');
 };

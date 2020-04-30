@@ -1,0 +1,10 @@
+extend ../layouts/common.pug
+block content
+    h2.mt-4.text-center Shops
+        .container.d-flex.mt-4.flex-wrap
+            each user in users
+                .card(style='width: 20rem;').mx-4.mb-4
+                    .card-body
+                        h3.card-title= user.name
+                        p.card-text(style='font-size: 1rem') Visit our shop to choose your books.
+                        a.btn.btn-primary(href='/shops/' + user.id + '/books') Visit

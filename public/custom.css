@@ -3,12 +3,19 @@
   line-height: 64px;
 }
 
-.table .thead-dark tr td:last-child {
-  padding-top: 18px;
+.table .thead-dark .btn-action {
+  margin-top: 15px;
 }
 
 .error-five {
   height: 91.5vh;
   background-image: url(https://cdn.glitch.com/25a7302b-8fb7-49e3-9cde-d1497a081d52%2FHTML-CSS-500-Internal-Error-Page.png?v=1588083862236);
   background-position: 55% 60%;
+}
+
+.background {
+  height: 91.5vh;
+  background-image: url(https://wallpapertag.com/wallpaper/full/4/b/3/342020-game-background-3000x1500-macbook.jpg);
+  background-size: cover;
+  background-position: 0% 100%;
 }

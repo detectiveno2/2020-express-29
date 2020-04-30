@@ -7,22 +7,23 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon --inspect server.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.0.0",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.21.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
-    "body-parser": "^1.19.0",
-    "shortid": "^2.2.15",
-    "pug": "^2.0.4",
-    "cookie-parser": "^1.4.5",
     "md5": "^2.2.1",
-    "bcrypt": "^4.0.1",
-    "@sendgrid/mail": "^7.0.0",
-    "cloudinary": "^1.21.0",
-    "multer": "^1.4.2",
     "mongodb": "^3.5.5",
-    "mongoose": "^5.9.9"
+    "mongoose": "^5.9.9",
+    "multer": "^1.4.2",
+    "pug": "^2.0.4",
+    "shortid": "^2.2.15"
   },
   "engines": {
     "node": "12.x"
@@ -35,5 +36,8 @@
     "node",
     "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }

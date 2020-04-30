@@ -1,13 +1,13 @@
-const express = require("express");
-const multer = require("multer");
+const express = require('express');
+const multer = require('multer');
 
-const controller = require("../controllers/books.controller");
+const controller = require('../controllers/books.controller');
 
 const router = express.Router();
-var upload = multer({ dest: "./public/uploads/" });
+var upload = multer({ dest: './public/uploads/' });
 
 router.get(
-  "/",
+  '/' /*
   (req, res, next) => {
     try {
       var a;
@@ -15,20 +15,22 @@ router.get(
     } catch (error) {
       res.render('500');
     }
-  },
+  },*/,
   controller.index
 );
 
-router.get("/create", controller.create);
+router.get('/:id/shop', controller.shopIndex);
 
-router.post("/create", upload.single("cover"), controller.postCreate);
+router.get('/create', controller.create);
 
-router.get("/edit/:id", controller.edit);
+router.post('/create', upload.single('cover'), controller.postCreate);
 
-router.post("/edit", upload.single("cover"), controller.postEdit);
+router.get('/edit/:id', controller.edit);
 
-router.get("/delete/:id", controller.delete);
+router.post('/edit', upload.single('cover'), controller.postEdit);
 
-router.get("/add/:id", controller.add);
+router.get('/delete/:id', controller.delete);
+
+router.get('/add/:id', controller.add);
 
 module.exports = router;
